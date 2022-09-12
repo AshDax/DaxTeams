@@ -1,0 +1,32 @@
+<h4 class="text-center my-3"><%= @team.name%><h4>
+
+<div class="bigbox">
+  <div class="box">
+    <table class="table table-striped mt-2">
+    <thead class="thead-dark">
+      <tr>
+        <th>Email</th> 
+        <th>Role</th>
+        <th>View </th>
+        <th>Delete </th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @team.users.each do |users| %>
+        <tr>
+        <td> <%= users.email %></td>
+        <td><%= users.role  %></td>
+        <td> <%= link_to "View", team_user_url(@team.id, users), class: "btn btn-dark" %> </td>
+        <td>
+          <%= form_with url: team_user_url(@team,1), method: :patch  do |f| %>
+            <%= f.hidden_field :emp, :value => users.id %>
+            <%= f.hidden_field :team_id_new, :value => 100 %>
+            <%= f.submit "Remove" ,class: "btn btn-dark" %>
+          <% end %>
+        </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div> 

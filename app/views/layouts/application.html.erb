@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DaxTeams</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <%= render 'layouts/header' %>
+    
+  <div class="container" role="alert">
+		<% flash.each do |message_type, message| %>
+			<div id="flash" class="alert alert-dark mt-2 flash-<%= message_type %>"><%= message %></div>
+		<% end %>
+	</div>
+    <%= yield %>
+  </body>
+</html>
