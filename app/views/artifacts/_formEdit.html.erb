@@ -1,0 +1,7 @@
+ <%= form_with url: organization_artifact_path(1,artifact), model: artifact do |form| %>
+    <div class="mb-3 ml-3">
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    <%= form.submit "Submit"  , class:"btn btn-sm btn-dark" %>
+    </div>
+  <% end %> 

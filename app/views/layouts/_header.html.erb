@@ -9,15 +9,16 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0  ">
 
         <% if user_signed_in? %>
-
+ 
           <li class="nav-item ">
-            <div class="nav-link active" aria-current="page" ><%= link_to "Users", team_users_path(1), class: "text-light"%></div>
+            <div class="nav-link active" aria-current="page" ><%= link_to "Users", organization_users_path(1), class: "text-light"%></div>
           </li>
-
-          <li class="nav-item">
-            <div class="nav-link" ><%= link_to "Teams", teams_path, class: "text-light" %></div>
-          </li>
-
+            <li class="nav-item">
+              <div class="nav-link" ><%= link_to "Teams", organization_teams_path(1), class: "text-light" %></div>
+            </li>
+            <li class="nav-item">
+              <div class="nav-link" ><%= link_to "Resources", organization_artifacts_path(1), class: "text-light" %></div>
+            </li>
           <li class="nav-item  ">
             <div class="nav-link" ><%= link_to "Log out", destroy_user_session_path, method: "delete", class: "text-light" %></div>
           </li>

@@ -1,6 +1,6 @@
-<%= form_with model: user, url: team_user_url do |f| %>
+<%= form_with model: user, url: organization_user_url do |f| %>
   <div class="form-group">
     <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
   </div>
   <%= f.submit 'Commit', class: "btn btn-dark" %>
-<% end %> 
+<% end %>  

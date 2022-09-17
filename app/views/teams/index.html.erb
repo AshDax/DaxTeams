@@ -9,16 +9,16 @@
         <th>View </th> 
         <th>Edit </th>
         <th>Delete </th>
-      </tr> 
-      </thead>
+      </tr>  
+      </thead> 
       <tbody>
         <% @teams.each do |team| %>
           <tr>
            <td><%= team.name  %></td>
-           <td> <%= link_to "View", team_path(team), class: "btn btn-dark" %> </td>
-           <td><%= link_to "Edit", edit_team_path(team), class: "btn btn-dark" %> </td></td>
+           <td> <%= link_to "View", organization_team_path(1,team), class: "btn btn-dark" %> </td>
+           <td><%= link_to "Edit", edit_organization_team_path(1,team), class: "btn btn-dark" %> </td></td>
            <td>
-               <%= link_to("Delete", team_path(team),class:"btn btn-dark",
+               <%= link_to("Delete", organization_team_path(1,team),class:"btn btn-dark",
                :method => :delete) %>
             </td>
           </tr>
@@ -26,6 +26,6 @@
 
       </tbody>
     </table>
-<%= link_to "Create New Team", new_team_path, class:"btn btn-dark" %>
+<%= link_to "Create New Team", new_organization_team_path, class:"btn btn-dark" %>
   </div>
 </div>
