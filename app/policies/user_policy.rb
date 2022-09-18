@@ -11,24 +11,24 @@ class UserPolicy
     end
 
     def show?
-        @current_user.admin?
+        @current_user.admin? or @current_user.team_leader?
     end
 
     def new?
-        @current_user.admin?
+        @current_user.admin? 
     end
 
     def create?
-        @current_user.admin?
+        @current_user.admin? 
     end
     def update?
         true
     end
     def edit?
-        @current_user.admin?
+        @current_user.admin? or @current_user.team_leader?
     end
 
     def destroy?
-        @current_user.admin?
+        @current_user.admin? or @current_user.team_leader?
     end
 end
