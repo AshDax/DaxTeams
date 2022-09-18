@@ -7,11 +7,11 @@
     end
 
     def index?
-        @current_user.admin?
+        @current_user.admin? or @current_user.team_leader?
     end
 
     def show?
-        @current_user.admin?
+        @current_user.admin? or @current_user.team_leader?
     end
 
     def new?

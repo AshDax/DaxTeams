@@ -1,6 +1,5 @@
 <h4 class="text-center my-3"><%= @team.name%><h4>
  <%= link_to "View Teams Resources" , organization_artifacts_path(1, :team_id => @team.id), class: "btn btn-dark" %> 
-<%if current_user.admin? %>
 <div class="bigbox">
   <div class="box">
     <table class="table table-striped mt-2">
@@ -12,7 +11,7 @@
         <th>Delete </th>
       </tr>
       </thead>
-      <tbody>
+      <tbody> 
         <% @team.users.each do |users| %>
         <tr>
         <td> <%= users.email %></td>
@@ -31,5 +30,5 @@
     </table>
   </div>
 </div> 
-<%end%>
+
 

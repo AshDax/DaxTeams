@@ -12,6 +12,7 @@
       </tr>  
       </thead> 
       <tbody>
+      <% if current_user.admin? or current_user.team_leader?%>
         <% @artifacts.each do |artifact| %>
           <tr>
            <td><%= artifact.name  %></td>
@@ -22,7 +23,22 @@
                :method => :delete) %>
             </td>
           </tr>
-        <% end %> 
+         <% end %> 
+      <%end%>
+
+      <% if current_user.team_member? %>
+          <%current_user.team.artifacts.each do |artifact|%>
+             <tr>
+           <td><%= artifact.name  %></td>
+           <td> <%= link_to "View", organization_artifact_path(1,artifact), class: "btn btn-dark" %> </td>
+           <td><%= link_to "Edit", edit_organization_artifact_path(1,artifact), class: "btn btn-dark" %> </td></td>
+           <td>
+               <%= link_to("Delete", organization_artifact_path(1,artifact),class:"btn btn-dark",
+               :method => :delete) %>
+            </td>
+          </tr>
+          <%end%>
+      <%end%>
 
       </tbody>
     </table>
