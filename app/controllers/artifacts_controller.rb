@@ -7,13 +7,14 @@ class ArtifactsController < ApplicationController
             @artifacts = Artifact.all
         end
     end
-
+ 
      def show
         @artifact = Artifact.find(params[:id])
     end 
      
     def new
         @artifact = Artifact.new
+       
     end
 
     def create
@@ -29,6 +30,7 @@ class ArtifactsController < ApplicationController
 
     def edit
         @artifact = Artifact.find(params[:id])
+        @teams = Team.all
     end 
 
     def update
@@ -52,4 +54,4 @@ class ArtifactsController < ApplicationController
             params.require(:artifact).permit(:name)
         end
 end
- 
+  

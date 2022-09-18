@@ -6,6 +6,7 @@
     <thead class="thead-dark">
         <tr>
         <th>Name</th>
+        <th>Team</th>
         <th>View </th> 
         <th>Edit </th>
         <th>Delete </th>
@@ -16,6 +17,11 @@
         <% @artifacts.each do |artifact| %>
           <tr>
            <td><%= artifact.name  %></td>
+           <% if artifact.teams.name.present? %>
+            <td><%= artifact.teams.name  %></td>
+            <%else%>
+            <td>UNASSIGNED</td>
+            <%end%>
            <td> <%= link_to "View", organization_artifact_path(1,artifact), class: "btn btn-dark" %> </td>
            <td><%= link_to "Edit", edit_organization_artifact_path(1,artifact), class: "btn btn-dark" %> </td></td>
            <td>
