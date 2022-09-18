@@ -9,17 +9,17 @@
         <th>View </th>
         <th>Edit </th>
         <th>Delete </th>
-      </tr>
+      </tr> 
       </thead>
       <tbody>
         <% @users.each do |user| %>
           <tr>
            <td> <%= user.email %></td>
            <td><%= user.role  %></td>
-           <td><%= link_to "View" , team_user_url(1, user), class:"btn btn-dark" %>  </td>
-           <td><%= link_to "Edit", edit_team_user_path(1, user), class:"btn btn-dark" %></td>
+           <td><%= link_to "View" , organization_user_path(1, user), class:"btn btn-dark" %>  </td>
+           <td><%= link_to "Edit", edit_organization_user_path(1, user), class:"btn btn-dark" %></td>
            <td>
-              <%= link_to("Delete", team_user_path(1,user), class:"btn btn-dark",
+              <%= link_to("Delete", organization_user_path(1,user), class:"btn btn-dark",
               :method => :delete)  %>
             </td>
           

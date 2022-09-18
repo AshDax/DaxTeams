@@ -11,8 +11,8 @@ class TeamsController < ApplicationController
     def show
         @team = Team.find(params[:id])
         authorize @team
-    end
- 
+    end 
+     
     def new
         @team = Team.new
         @emps = User.where(team_id: nil)

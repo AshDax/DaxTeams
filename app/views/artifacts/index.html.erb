@@ -1,1 +1,31 @@
-This is the artifacts page
+<div class="bigbox">
+  <div class="box">
+  <h3 class="text-center mt-2 mb-4">Resources</h3>
+  
+    <table class="table table-striped mt-2">
+    <thead class="thead-dark">
+        <tr>
+        <th>Name</th>
+        <th>View </th> 
+        <th>Edit </th>
+        <th>Delete </th>
+      </tr>  
+      </thead> 
+      <tbody>
+        <% @artifacts.each do |artifact| %>
+          <tr>
+           <td><%= artifact.name  %></td>
+           <td> <%= link_to "View", organization_artifact_path(1,artifact), class: "btn btn-dark" %> </td>
+           <td><%= link_to "Edit", edit_organization_artifact_path(1,artifact), class: "btn btn-dark" %> </td></td>
+           <td>
+               <%= link_to("Delete", organization_artifact_path(1,artifact),class:"btn btn-dark",
+               :method => :delete) %>
+            </td>
+          </tr>
+        <% end %> 
+
+      </tbody>
+    </table>
+<%= link_to "Create New Resource", new_organization_artifact_path, class:"btn btn-dark" %>
+  </div>
+</div>

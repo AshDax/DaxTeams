@@ -5,13 +5,13 @@ class UsersController < ApplicationController
     def index 
         @users = User.all
         authorize User
-    end
-   
+    end 
+    
     def show
         @user = User.find(params[:id])
         authorize @user
     end
-
+  
     def edit
         @user = User.find(params[:id])
         authorize @user
@@ -22,9 +22,9 @@ class UsersController < ApplicationController
             @user = User.find(params[:emp])
 
             if @user.update(:team_id =>nil)
-                redirect_to teams_path, :success => 'Team Updated'
-            else
-                redirect_to teams_path, :alert => 'Unable to Update Team'
+                redirect_to organization_teams_path, :success => 'Team Updated'   
+            else 
+                redirect_to organization_teams_path, :alert => 'Unable to Update Team'
             end
 
         elsif params[:emp].present?
@@ -32,18 +32,18 @@ class UsersController < ApplicationController
             authorize @user
 
             if @user.update_attributes(user_params)
-                redirect_to teams_path, :success => 'Team Updated'
+                redirect_to organization_teams_path, :success => 'Team Updated'
             else
-                redirect_to teams_path, :alert => 'Unable to Update Team'
+                redirect_to organization_teams_path, :alert => 'Unable to Update Team'
             end
         else
             @user = User.find(params[:id])
             authorize @user
 
             if @user.update_attributes(secure_params)
-                redirect_to team_users_path, :success => 'User updated'
+                redirect_to organization_users_path, :success => 'User updated'
             else
-                redirect_to team_users_path, :alert => 'Unable to update user'
+                redirect_to organization_users_path, :alert => 'Unable to update user'
             end
         end
     end
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
         authorize user
         authorize user
         user.destroy
-        redirect_to team_users_path, :notice => "User deleted"
+        redirect_to organization_users_path, :notice => "User deleted"
     end
 
     private
