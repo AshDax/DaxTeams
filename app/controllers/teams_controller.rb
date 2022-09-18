@@ -1,8 +1,8 @@
 class TeamsController < ApplicationController
 
     before_action :authenticate_user!
-    after_action :verify_authorized
-
+    # after_action :verify_authorized
+  
     def index
         @teams = Team.all 
         authorize @teams
@@ -20,13 +20,21 @@ class TeamsController < ApplicationController
     end
 
     def create
-        @team = Team.new(team_params)
-        authorize @team
+        if params[:team_resource].present?
+            teams = Team.find(params[:team_resource])
+            artifact = Artifact.find([params[:artifact]])
+            teams.artifacts << artifact
+            teams.save
+            redirect_to organization_teams_path(1)
 
-        if @team.save
-            redirect_to action: 'index'
         else
-            redirect_to team_path, :alert => 'Unable to create user'
+            @team = Team.new(team_params)
+            # authorize @team
+            if @team.save
+                redirect_to action: 'index'
+            else
+                redirect_to team_path, :alert => 'Unable to create user'
+            end
         end
     end
 
