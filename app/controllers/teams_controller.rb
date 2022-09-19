@@ -7,7 +7,7 @@ class TeamsController < ApplicationController
         @teams = Team.all 
         authorize @teams
     end
- 
+  
     def show
         @team = Team.find(params[:id])
         authorize @team

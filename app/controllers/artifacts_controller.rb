@@ -6,7 +6,7 @@ class ArtifactsController < ApplicationController
         else
             @artifacts = Artifact.all
         end
-    end
+    end 
  
      def show
         @artifact = Artifact.find(params[:id])
@@ -19,11 +19,11 @@ class ArtifactsController < ApplicationController
 
     def create
         @artifact = Artifact.new(artifact_params)
-
+ 
         if @artifact.save
             redirect_to organization_artifacts_path;
         else
-            redirect_to organization_artifacts_path :alert => 'Unable to create user'
+            redirect_to organization_artifacts_path :alert => 'Unable to create artifact'
         end
     end
 
@@ -39,7 +39,7 @@ class ArtifactsController < ApplicationController
         if @artifact.update(artifact_params)
             redirect_to organization_artifacts_path
         else
-            redirect_to organization_artifacts_path, :alert => 'Unable to update user'
+            redirect_to organization_artifacts_path, :alert => 'Unable to update artifact'
         end
     end
 
