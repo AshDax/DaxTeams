@@ -6,7 +6,6 @@
     <thead class="thead-dark">
         <tr>
         <th>Name</th>
-        <th>Team</th>
         <th>View </th> 
         <th>Edit </th>
         <th>Delete </th>
@@ -17,13 +16,9 @@
         <% @artifacts.each do |artifact| %>
           <tr>
            <td><%= artifact.name  %></td>
-           <% if artifact.teams.name.present? %>
-            <td><%= artifact.teams.name  %></td>
-            <%else%>
-            <td>UNASSIGNED</td>
-            <%end%>
            <td> <%= link_to "View", organization_artifact_path(1,artifact), class: "btn btn-dark" %> </td>
-           <td><%= link_to "Edit", edit_organization_artifact_path(1,artifact), class: "btn btn-dark" %> </td></td>
+            <td><%= link_to "Edit", edit_organization_artifact_path(1,artifact), class: "btn btn-dark" %> </td></td>
+          
            <td>
                <%= link_to("Delete", organization_artifact_path(1,artifact),class:"btn btn-dark",
                :method => :delete) %>
@@ -48,7 +43,7 @@
 
       </tbody>
     </table>
-  <% if !current_user.admin? and :team_id.present? %>
+  <% if current_user.admin? and !params[:team_id].present? %>
     <%= link_to "Create New Resource", new_organization_artifact_path, class:"btn btn-dark" %>
   <%end%>
   </div>
