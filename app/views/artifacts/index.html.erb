@@ -6,7 +6,7 @@
     <thead class="thead-dark">
         <tr>
         <th>Name</th>
-        <th>View </th> 
+        <th>View </th>
         <th>Edit </th>
         <th>Delete </th>
       </tr>  
@@ -18,10 +18,16 @@
            <td><%= artifact.name  %></td>
            <td> <%= link_to "View", organization_artifact_path(1,artifact), class: "btn btn-dark" %> </td>
             <td><%= link_to "Edit", edit_organization_artifact_path(1,artifact), class: "btn btn-dark" %> </td></td>
-          
            <td>
-               <%= link_to("Delete", organization_artifact_path(1,artifact),class:"btn btn-dark",
-               :method => :delete) %>
+           <% if params[:team_id].present? %>
+               <%= form_with url: organization_artifact_url(1,artifact), method: :patch  do |f| %>
+                <%= f.hidden_field :artifact, :value => artifact.id %>
+                <%= f.hidden_field :artifact_id_new, :value => 100 %>
+                <%= f.submit "Remove" ,class: "btn btn-dark" %>
+              <% end %>
+          <% else %>
+          <%= link_to("Delete", organization_artifact_path(1,artifact),class:"btn btn-dark",:method => :delete) %>
+            <%end %>
             </td>
           </tr>
          <% end %> 
@@ -34,8 +40,11 @@
            <td> <%= link_to "View", organization_artifact_path(1,artifact), class: "btn btn-dark" %> </td>
            <td><%= link_to "Edit", edit_organization_artifact_path(1,artifact), class: "btn btn-dark" %> </td></td>
            <td>
-               <%= link_to("Delete", organization_artifact_path(1,artifact),class:"btn btn-dark",
-               :method => :delete) %>
+           <%= form_with url: organization_artifact_url(1,artifact), method: :patch  do |f| %>
+            <%= f.hidden_field :artifact, :value => artifact.id %>
+            <%= f.hidden_field :artifact_id_new, :value => 100 %>
+            <%= f.submit "Remove" ,class: "btn btn-dark" %>
+          <% end %>
             </td>
           </tr>
           <%end%>

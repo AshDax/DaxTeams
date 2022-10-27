@@ -6,8 +6,10 @@
         <tr>
         <th>Name</th>
         <th>View </th> 
+        <%if current_user.admin?%>
         <th>Edit </th> 
         <th>Delete </th>
+        <%end%>
       </tr>  
       </thead> 
       <tbody>

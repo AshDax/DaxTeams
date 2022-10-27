@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     def update
         if params[:team_id_new].present?
             @user = User.find(params[:emp])
-
+ 
             if @user.update(:team_id =>nil)
                 redirect_to organization_teams_path, :success => 'Team Updated'   
             else 

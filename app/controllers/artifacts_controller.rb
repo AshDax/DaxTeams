@@ -1,7 +1,7 @@
 class ArtifactsController < ApplicationController
 
     def index
-        if params[:team_id].present?
+        if params[:team_id].present? 
             @artifacts = Team.find(params[:team_id]).artifacts
         else
             @artifacts = Artifact.all
@@ -34,12 +34,21 @@ class ArtifactsController < ApplicationController
     end 
 
     def update
-        @artifact = Artifact.find(params[:id])
-    
-        if @artifact.update(artifact_params)
-            redirect_to organization_artifacts_path
+        if params[:artifact_id_new].present?
+            @artifact = Artifact.find(params[:artifact])
+            if @artifact.update(:team_id => nil)
+                redirect_to organization_artifacts_path   
+            else 
+                redirect_to organization_artifacts_path, :alert => 'Unable to Update Team'
+            end
         else
-            redirect_to organization_artifacts_path, :alert => 'Unable to update artifact'
+            @artifact = Artifact.find(params[:id])
+        
+            if @artifact.update(artifact_params)
+                redirect_to organization_artifacts_path
+            else
+                redirect_to organization_artifacts_path, :alert => 'Unable to update artifact'
+            end
         end
     end
 

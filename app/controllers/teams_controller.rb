@@ -59,8 +59,10 @@ class TeamsController < ApplicationController
     def destroy 
         @team = Team.find(params[:id])
         authorize @team
-        team_member = @team.users
-        deallocate_members(team_member)
+        employee = @team.users
+        artifacts = @team.artifacts
+        deallocate_members(employee)
+        deallocate_artifacts(artifacts)
         @team.destroy            
         redirect_to action: 'index'
         
@@ -71,7 +73,12 @@ class TeamsController < ApplicationController
             params.require(:team).permit(:name)
         end
 
-        def deallocate_members(team_member)
-            team_member.update(:team_id => nil)
+        def deallocate_members(employee)
+            employee.update(:team_id => nil)
         end
+
+        def deallocate_artifacts(artifacts)
+            artifacts.update(:team_id => nil)
+        end
+
 end
