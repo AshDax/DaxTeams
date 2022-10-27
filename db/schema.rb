@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_12_052525) do
+ActiveRecord::Schema.define(version: 2022_10_27_153602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,12 +20,9 @@ ActiveRecord::Schema.define(version: 2022_09_12_052525) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "organization_id", default: 1
+    t.bigint "team_id"
     t.index ["organization_id"], name: "index_artifacts_on_organization_id"
-  end
-
-  create_table "artifacts_teams", id: false, force: :cascade do |t|
-    t.bigint "team_id", null: false
-    t.bigint "artifact_id", null: false
+    t.index ["team_id"], name: "index_artifacts_on_team_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -60,6 +57,7 @@ ActiveRecord::Schema.define(version: 2022_09_12_052525) do
   end
 
   add_foreign_key "artifacts", "organizations"
+  add_foreign_key "artifacts", "teams"
   add_foreign_key "teams", "organizations"
   add_foreign_key "users", "organizations"
   add_foreign_key "users", "teams"
